@@ -18,10 +18,9 @@
         <form id="player1">
           <h2>PLAYER1</h2>
           <div id="player1-dice" >YOUR DICE:<span id="player1-dice-number"></span>
-          <div id="player1-score">YOUR TOTAL SCORE IS:<span id="player1-total-score"></span></div>
-
+            <div id="player1RoundScore">YOUR ROUNDS SCORE IS: <span id="player1-round-score"></span></div>
+            <div id="player1-score">YOUR TOTAL SCORE IS:<span id="player1-total-score"></span></div>
           </div>
-
           <button id="player1-roll" type="click" class="btn-success">ROLL</button>
           <button id="player1-hold" type="click" class="btn-danger">HOLD</button>
         </form>
@@ -32,7 +31,8 @@
         <form id="player2">
           <h2>PLAYER2</h2>
           <div id="player2-dice" >YOUr DICE:<span id="player2-dice-number"></span>
-          <div id="player2-score">YOUR TOTAL SCORE IS:<span id="player2-total-score"></span></div>
+            <div id="player2RoundScore">YOUR ROUNDS SCORE IS: <span id="player2-round-score"></span></div>
+            <div id="player2-score">YOUR TOTAL SCORE IS:<span id="player2-total-score"></span></div>
 
           </div>
 
@@ -43,7 +43,9 @@
 
 
     </div>
-    <div id="result">
+    <div>
+      <h2 id="player1Wins">Player 1 Wins!!!!!</h2>
+      <h2 id="player2Wins">Player 2 Wins!!!!!</h2>
 
     </div>
   </div>

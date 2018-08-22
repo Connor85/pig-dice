@@ -1,116 +1,91 @@
 // business logic
-function Pig (player, score, ){
+function Pig (player, score){
   this.player=player;
   this.score=score;
-  // roll();
-  // totalScore();
-  //hold();
+  this.turn = false;
 }
-var score=0;
-var diceNumber = 0;
-var total=0;
-
 
 Pig.prototype.roll = function (){
   var diceNumber = Math.floor((Math.random() * 6)+1);
   //var score+=diceNumber;
   if (diceNumber===1){
-//alert("you number is 1,");
-  return  diceNumber=0;
+    return 0;
   }
   return diceNumber;
-  //alert("roll")
 };
 
-
-Pig.prototype.totalScore=function(thisRoll){
-  total += thisRoll;
-  return total;
-
+function roundScoreAdd(score, diceNumber){
+  return score+=diceNumber;
 };
 
-Pig.prototype.hold=function(){
-
-
+Pig.prototype.hold = function (roundScore) {
+  this.score += roundScore;
+  return 0;
 };
-
 
 //user logic
 
 $(document).ready(function(){
-
+  var player1=new Pig("p1", 0);
+  var player2=new Pig("p2", 0);
+  var roundScore = 0;
+  var playerTurn = "1";
+//player1 dice
   $("#player1-roll").click(function(){
     event.preventDefault();
-    var player1=new Pig();
-    var a=player1.roll()
-    if(a===0){
-      $("#player1-roll").css('display:1');
+
+    var diceRoll=player1.roll();
+
+    if(diceRoll===1){
+      document.getElementById("player1-roll").disabled = true;
+      document.getElementById("player2-roll").disabled = false;
     }
-    console.log(a)
-    var b=player1.totalScore(a);
-    console.log(b)
-    $("#player1-dice-number").text(a);
+    roundScore = roundScoreAdd(roundScore, diceRoll);
+    console.log(roundScore);
 
-    $("#player1-total-score").text(b);
-  //  $("#player1-total-score").text(totalScore(roll()));
-
-
+  //  player1.win();
+    $("#player1-dice-number").text(diceRoll);
+    $("#player1-round-score").text(roundScore);
 
   });
   $("#player1-hold").click(function(){
-    event.preventDefault();
+    roundScore = player1.hold(roundScore);
+    console.log(player1.score);
+    $("#player1-total-score").text(player1.score);
     document.getElementById("player1-roll").disabled = true;
     document.getElementById("player2-roll").disabled = false;
-  //  alert("Player2 s round")
-
-    //$("#player1-total-score").text(b);
-
-
-
+    event.preventDefault();
 });
 
-
+// player 2
 $("#player2-roll").click(function(){
   event.preventDefault();
-  var player2=new Pig();
-  var a=player2.roll()
-  if(a===0){
-    $("#player2-roll").css('display:1');
+
+  var diceRoll=player2.roll();
+
+  if(diceRoll===1){
+    document.getElementById("player2-roll").disabled = true;
+    document.getElementById("player1-roll").disabled = false;
   }
-  console.log(a)
-  var b=player2.totalScore(a);
-  console.log(b)
-  $("#player2-dice-number").text(a);
+  roundScore = roundScoreAdd(roundScore, diceRoll);
 
-  $("#player2-total-score").text(b);
-//  $("#player1-total-score").text(totalScore(roll()));
-
-
-
+//  player1.win();
+  $("#player2-dice-number").text(diceRoll);
+  $("#player2-round-score").text(roundScore);
+  if (player1.score >= 100){
+    $("#player1Wins").show();
+  } else if (player2.score>= 100){
+    $("#player2Wins").show();
+  }
 });
 $("#player2-hold").click(function(){
-  event.preventDefault();
+  roundScore = player2.hold(roundScore);
+  console.log(player2.score);
+  $("#player2-total-score").text(player2.score);
   document.getElementById("player2-roll").disabled = true;
   document.getElementById("player1-roll").disabled = false;
-
-//  alert("Player2 s round")
-
-  //$("#player1-total-score").text(b);
-
-
-
+  event.preventDefault();
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
