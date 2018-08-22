@@ -10,3 +10,12 @@ h1  {
 #player1Wins, #player2Wins  {
   display: none;
 }
+
+.col-md-6  {
+  background: lightgray;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  outline: 1px solid black;
+}

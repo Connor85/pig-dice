@@ -54,6 +54,11 @@ $(document).ready(function(){
     $("#player1-total-score").text(player1.score);
     document.getElementById("player1-roll").disabled = true;
     document.getElementById("player2-roll").disabled = false;
+    if (player1.score >= 20){
+      $("#player1Wins").show();
+    } else if (player2.score>= 20){
+      $("#player2Wins").show();
+    }
     event.preventDefault();
 });
 
@@ -72,11 +77,7 @@ $("#player2-roll").click(function(){
 //  player1.win();
   $("#player2-dice-number").text(diceRoll);
   $("#player2-round-score").text(roundScore);
-  if (player1.score >= 100){
-    $("#player1Wins").show();
-  } else if (player2.score>= 100){
-    $("#player2Wins").show();
-  }
+
 });
 $("#player2-hold").click(function(){
   roundScore = player2.hold(roundScore);
@@ -84,6 +85,11 @@ $("#player2-hold").click(function(){
   $("#player2-total-score").text(player2.score);
   document.getElementById("player2-roll").disabled = true;
   document.getElementById("player1-roll").disabled = false;
+  if (player1.score >= 20){
+    $("#player1Wins").show();
+  } else if (player2.score>= 20){
+    $("#player2Wins").show();
+  }
   event.preventDefault();
 });
 
