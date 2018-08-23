@@ -4,18 +4,21 @@ function Pig (player, score){
   this.score=score;
   // this.turn = false;
 }
-
 Pig.prototype.roll = function (){
-  var diceNumber = Math.floor((Math.random() * 6)+1);
-  //var score+=diceNumber;
-  if (diceNumber===1){
-    return 0;
-  }
-  return diceNumber;
-};
+  return Math.floor(Math.random() * (5)) + 1;
+//Math.floor((Math.random() * 6)+1);
+}
+
+// Pig.prototype.roll = function (){
+//   // var diceNumber = Math.floor((Math.random() * 6)+1);
+//   if (diceNumber===1){
+//     return 0;
+//   }
+//   return diceNumber;
+// };
 
 function roundScoreAdd(score, diceNumber){
-  if (diceNumber === 0){
+  if (diceNumber === 1){
     score=0;
   }else {
     score+=diceNumber;
@@ -41,7 +44,7 @@ $(document).ready(function(){
 
     var diceRoll=player1.roll();
 
-    if(diceRoll===0){
+    if(diceRoll===1){
       document.getElementById("player1-roll").disabled = true;
       document.getElementById("player2-roll").disabled = false;
     }
@@ -58,9 +61,9 @@ $(document).ready(function(){
     $("#player1-total-score").text(player1.score);
     document.getElementById("player1-roll").disabled = true;
     document.getElementById("player2-roll").disabled = false;
-    if (player1.score >= 20){
+    if (player1.score >= 100){
       $("#player1Wins").show();
-    } else if (player2.score>= 20){
+    } else if (player2.score>= 100){
       $("#player2Wins").show();
     }
     event.preventDefault();
@@ -72,7 +75,7 @@ $("#player2-roll").click(function(){
 
   var diceRoll=player2.roll();
 
-  if(diceRoll===0){
+  if(diceRoll===1){
     document.getElementById("player2-roll").disabled = true;
     document.getElementById("player1-roll").disabled = false;
   }
@@ -89,9 +92,9 @@ $("#player2-hold").click(function(){
   $("#player2-total-score").text(player2.score);
   document.getElementById("player2-roll").disabled = true;
   document.getElementById("player1-roll").disabled = false;
-  if (player1.score >= 20){
+  if (player1.score >= 100){
     $("#player1Wins").show();
-  } else if (player2.score>= 20){
+  } else if (player2.score>= 100){
     $("#player2Wins").show();
   }
   event.preventDefault();
