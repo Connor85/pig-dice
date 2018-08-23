@@ -2,7 +2,7 @@
 function Pig (player, score){
   this.player=player;
   this.score=score;
-  this.turn = false;
+  // this.turn = false;
 }
 
 Pig.prototype.roll = function (){
@@ -15,7 +15,12 @@ Pig.prototype.roll = function (){
 };
 
 function roundScoreAdd(score, diceNumber){
-  return score+=diceNumber;
+  if (diceNumber === 0){
+    score=0;
+  }else {
+    score+=diceNumber;
+  }
+  return score;
 };
 
 Pig.prototype.hold = function (roundScore) {
@@ -36,7 +41,7 @@ $(document).ready(function(){
 
     var diceRoll=player1.roll();
 
-    if(diceRoll===1){
+    if(diceRoll===0){
       document.getElementById("player1-roll").disabled = true;
       document.getElementById("player2-roll").disabled = false;
     }
@@ -50,7 +55,6 @@ $(document).ready(function(){
   });
   $("#player1-hold").click(function(){
     roundScore = player1.hold(roundScore);
-    console.log(player1.score);
     $("#player1-total-score").text(player1.score);
     document.getElementById("player1-roll").disabled = true;
     document.getElementById("player2-roll").disabled = false;
@@ -68,7 +72,7 @@ $("#player2-roll").click(function(){
 
   var diceRoll=player2.roll();
 
-  if(diceRoll===1){
+  if(diceRoll===0){
     document.getElementById("player2-roll").disabled = true;
     document.getElementById("player1-roll").disabled = false;
   }
